@@ -1,5 +1,111 @@
 # Changelog
 
+## [12.0.0](https://github.com/verysys-pal/oh-my-agent/compare/web-v11.0.4...web-v12.0.0) (2026-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cli:** `oma skills matrix` is rejected like the other plural spellings; use `oma skill matrix`.
+* **emit:** Root plugin skills now require the shared skills tree. Use OMA preset installation instead of npx skills or APM installation.
+* **security:** replace the oma-deepsec skill and /deepsec workflow with oma-security and /security without compatibility aliases. Deepsec remains the default source scanning engine.
+* **home:** OMA_HOME selects the global data home rather than a project installation target. Global storage now uses ~/.oma by default; old paths require migration and are not read as runtime fallbacks.
+* **video:** the `video.remotion` config key is now `video.hyperframes`, and `--compositor remotion` is replaced by `--compositor hyperframes`.
+
+### Features
+
+* **agent:** preserve run output so failures can become incidents ([c77e405](https://github.com/verysys-pal/oh-my-agent/commit/c77e4059bb92c04075ca5062798908322f58b15a))
+* **eval:** account vendor-reported tokens and cost per dispatch ([d949f97](https://github.com/verysys-pal/oh-my-agent/commit/d949f973455dd2b2d87b06de051e90e6057fadf8))
+* **harness:** add budgeted project skill evolution ([23484f1](https://github.com/verysys-pal/oh-my-agent/commit/23484f17f9c14014c25c6d7cd6ac9168e7d4ee91))
+* **harness:** add incident regression capture and evidence replay ([6617108](https://github.com/verysys-pal/oh-my-agent/commit/6617108258c1067fa4fc591ad5c4d1c153984c6b))
+* **harness:** capture failed runs as incidents from their task contracts ([26d2632](https://github.com/verysys-pal/oh-my-agent/commit/26d26325e1899ccdb91b97fedb90c61d7c18db34))
+* **harness:** promote incidents to skill fixtures and close the feedback loop ([5809e63](https://github.com/verysys-pal/oh-my-agent/commit/5809e633f00f8ee29d2e340ac3715bc2b94cb5de))
+* **harness:** record execution conditions, env allowlist, and arm traces ([815339f](https://github.com/verysys-pal/oh-my-agent/commit/815339f2fb869f5cdcab39193c564b71d7c86c3c))
+* **harness:** scan failed agent runs for uncaptured incidents ([cec500c](https://github.com/verysys-pal/oh-my-agent/commit/cec500ca73c01abd9d8d521ea183094203843afd))
+* **home:** unify global storage and default memory setup ([b3607ff](https://github.com/verysys-pal/oh-my-agent/commit/b3607ffbb4551e29e1e0523079be30edd5888d10))
+* **hooks:** announce harness changes once at session start ([e289ff2](https://github.com/verysys-pal/oh-my-agent/commit/e289ff2f871d98d335b02081de5db59a22f98783))
+* **hooks:** enforce code-intelligence provider with PreToolUse guard ([b5a5598](https://github.com/verysys-pal/oh-my-agent/commit/b5a5598a38f08e7acf9f945d75dc5aee7ed16260))
+* **link:** manage AGENTS.md only and retire CLAUDE.md OMA block ([f81c5a4](https://github.com/verysys-pal/oh-my-agent/commit/f81c5a4c661b314d721a57a95fa952c9ea4b8b00))
+* **providers:** register gortex project and excludes on install/update ([0963c30](https://github.com/verysys-pal/oh-my-agent/commit/0963c307ecd9878ba5f97fb6051dcbe398024fdf))
+* **qwen:** support native agents and reinforce serena hooks ([b2340ee](https://github.com/verysys-pal/oh-my-agent/commit/b2340eedd1f9d75699f7a83306da0d0a8460bbff))
+* **security:** replace deepsec workflow with security ([43200a2](https://github.com/verysys-pal/oh-my-agent/commit/43200a28e580055422070d4ca62bfb0d8d0a2299))
+* **skills:** adopt the meta-optimized procedure and surface harness evolution ([3388a33](https://github.com/verysys-pal/oh-my-agent/commit/3388a33edcd004a5a83fdc4dca6d5e9901e0f788))
+* **skills:** declare default meta-optimization anchors in the constitution ([25eb649](https://github.com/verysys-pal/oh-my-agent/commit/25eb6492b02f389655e2e596cf0717ca781fc645))
+* **skills:** enforce protected eval isolation and promotion gates ([929de1a](https://github.com/verysys-pal/oh-my-agent/commit/929de1aa7fe6b11aefe7e27cd6d063a872c64340))
+* **skills:** final test as non-regression with per-task evidence ([d333b7b](https://github.com/verysys-pal/oh-my-agent/commit/d333b7bc6664cd363649c223db4dd9186eaa90b8))
+* **skills:** held-in/held-out acceptance and confirmed negative transfer ([5a286ca](https://github.com/verysys-pal/oh-my-agent/commit/5a286caf044922ae508f56ff4e48e4205efe8ad6))
+* **skills:** make the evolution procedure an artifact with a constitution ([c31d95b](https://github.com/verysys-pal/oh-my-agent/commit/c31d95b49935ba1eb667b529383d888c961a7288))
+* **skills:** measure skill routing and record promotion lineage ([f1e021f](https://github.com/verysys-pal/oh-my-agent/commit/f1e021ff4865e44bf07c180d28baabdabe274325))
+* **skills:** meta-optimize the evolution procedure on held-out skills ([cd89010](https://github.com/verysys-pal/oh-my-agent/commit/cd89010213ba3cb214614535431f710bf5162106))
+* **skills:** meter live optimization against the constitution budget ([1734db2](https://github.com/verysys-pal/oh-my-agent/commit/1734db22091e09acd80cad21cb19b9653d51f0d1))
+* **skills:** narrate promotions and show the evolution loop in doctor ([27907b1](https://github.com/verysys-pal/oh-my-agent/commit/27907b1d64b653ba595a0f1d679347a9ebbd25c6))
+* **skills:** repeated eval trials with paired intervals and grouped splits ([027eced](https://github.com/verysys-pal/oh-my-agent/commit/027eced346974ec0c4f3b4a2d6906d2c1fe342f4))
+* **skills:** report model calls per verified improvement ([31faf4c](https://github.com/verysys-pal/oh-my-agent/commit/31faf4cac877ce69f856eaecaf1d8e676f9a6bd7))
+* **skills:** select maintainer evidence by learning value ([0c35866](https://github.com/verysys-pal/oh-my-agent/commit/0c3586646328361d63c6e00b667144c263308e33))
+* **state:** add session trajectory viewer ([c59c821](https://github.com/verysys-pal/oh-my-agent/commit/c59c8213f308569e458e9c9cb12722da67e3a21a))
+* **state:** capture and verify agent decisions ([b4d76a7](https://github.com/verysys-pal/oh-my-agent/commit/b4d76a7185d1a25fe1fc2071f58871684fafa5db))
+* **video:** replace remotion compositor with hyperframes ([55a7461](https://github.com/verysys-pal/oh-my-agent/commit/55a74610917fa4ab2430dede816103163403ea38))
+
+
+### Bug Fixes
+
+* **agent:** run codex subagents in the workspace-write sandbox ([60db173](https://github.com/verysys-pal/oh-my-agent/commit/60db1730d2b02a85b1d5fc7449d9dee4b41972cd))
+* **agents:** raise the subagent turn limit to 100 ([f4945be](https://github.com/verysys-pal/oh-my-agent/commit/f4945be84e256297830a3318a7b0d8d45c0b3c59))
+* **cli:** name the replacement for removed command spellings ([d1b2eae](https://github.com/verysys-pal/oh-my-agent/commit/d1b2eae662007ccd9b6b805b9a8e43f9e508a8b2))
+* **cli:** publish skills matrix as skill matrix ([52ae343](https://github.com/verysys-pal/oh-my-agent/commit/52ae343dbd20dfd3551d8fd7a995d4827a021eb8))
+* **config:** save preferences where they take effect in CUE projects ([6ca1310](https://github.com/verysys-pal/oh-my-agent/commit/6ca131083b3b2d82ee04dfe83c7fbb640105dd1f))
+* **docs:** resolve harness links across locales ([dea8fdb](https://github.com/verysys-pal/oh-my-agent/commit/dea8fdb0734a202160df75d6f90677496b11bc71))
+* **emit:** share resources once in full plugin packages ([0f7024e](https://github.com/verysys-pal/oh-my-agent/commit/0f7024ea329d2cc7ab8b9d9fadb5e175048b204d))
+* **explain:** date artifacts in the configured timezone ([f2b2342](https://github.com/verysys-pal/oh-my-agent/commit/f2b2342caac886232dbb68ea787696dc7d053d33))
+* **harness:** read the answer out of preserved run envelopes and route incidents to skills ([1a48496](https://github.com/verysys-pal/oh-my-agent/commit/1a4849646ae18b1bbabf7da2000aa64856a58893))
+* **hook:** drop only duplicate deliveries from a second registration ([f0d5ed3](https://github.com/verysys-pal/oh-my-agent/commit/f0d5ed33b90ff0bc3584f28d18ed1a9ae5f9473f))
+* **hook:** require explicit triggers for persistent workflows ([40d61f4](https://github.com/verysys-pal/oh-my-agent/commit/40d61f4e470b0dd2903f721971127f8e8c7bf093))
+* **hooks:** allow native search in provider-excluded paths ([#806](https://github.com/verysys-pal/oh-my-agent/issues/806)) ([da6cc67](https://github.com/verysys-pal/oh-my-agent/commit/da6cc678071b61a8b6283958c585902a07de4947))
+* **hooks:** hide native-search bypass from project source ([c8f4f9b](https://github.com/verysys-pal/oh-my-agent/commit/c8f4f9b5a12cd7ab89e252db4ceff2c99c30a7c8))
+* **hooks:** persist workflows invoked as slash commands ([a4f5975](https://github.com/verysys-pal/oh-my-agent/commit/a4f5975c6afba0befc2a784884ef3542f69711d3))
+* **install:** stop shipping maintainer defaults to every install ([2a8826d](https://github.com/verysys-pal/oh-my-agent/commit/2a8826d3f564cad65e550eb4750b398b361442d0))
+* **link:** refuse project-mode link and update from HOME ([8e9465b](https://github.com/verysys-pal/oh-my-agent/commit/8e9465b4ba7e0e1ba267b6993c2d29c11e3b6641))
+* **qwen:** align hooks with the shared code intelligence primer ([23a2b15](https://github.com/verysys-pal/oh-my-agent/commit/23a2b15186aad795053ec18e29f26d31daec71b1))
+* **schedule:** keep pre-rename OS registrations working and resync stale jobs ([428e80e](https://github.com/verysys-pal/oh-my-agent/commit/428e80e93fa9e4e6e9776e755ee57af4ba5cd929))
+* **schedule:** preserve internal services during orphan pruning ([663574c](https://github.com/verysys-pal/oh-my-agent/commit/663574c50c3652c6b257aaa4958323e4043d9edf))
+* **skills:** allow 180s per eval dispatch ([cca995d](https://github.com/verysys-pal/oh-my-agent/commit/cca995de938aae3e5c374f1a66c25018e1f212be))
+* **skills:** fall back to a cross-domain neighbor sample for negative transfer ([356710e](https://github.com/verysys-pal/oh-my-agent/commit/356710ea16c996166ca6ea78af2d17674c769fdf))
+* **skills:** keep evolution procedure out of the eval fixtures updates clear ([1680ef7](https://github.com/verysys-pal/oh-my-agent/commit/1680ef7e3664ae2aa1e3f40b39e5b6126749d21e))
+* **skills:** retry a timed-out eval dispatch once ([c4695b5](https://github.com/verysys-pal/oh-my-agent/commit/c4695b5e81b1157d3fc161b9614e57f4473d6f4c))
+* **update:** install from the checksum-verified release asset ([5101552](https://github.com/verysys-pal/oh-my-agent/commit/510155295a72dbf5e38141a3fbb26b0dbcb99617))
+* **update:** remove stray template configs and flag the old timezone ([99a6bf6](https://github.com/verysys-pal/oh-my-agent/commit/99a6bf68aa51d485c69137bc4e0b088ba8253510))
+* **verify:** bind evidence to exact task and run receipts ([859c300](https://github.com/verysys-pal/oh-my-agent/commit/859c300128372bc5db271827ef7de8302413de10))
+
+
+### Performance
+
+* **skills:** run live eval dispatches through a bounded parallel pool ([e539eb1](https://github.com/verysys-pal/oh-my-agent/commit/e539eb17e0d8c57b4d156605a0c844ea87beb70f))
+
+
+### Documentation
+
+* **cli:** describe qa verification as having no mechanical checks ([c07b62d](https://github.com/verysys-pal/oh-my-agent/commit/c07b62d06bd7d80489ef299d3ab36e8ffce0e3d3))
+* **cli:** document explain lint and the template option ([8a7a85c](https://github.com/verysys-pal/oh-my-agent/commit/8a7a85c3db33b14ad747123c1ca3dcee396bcd41))
+* **cli:** document trajectory vendors and explain render ([316e372](https://github.com/verysys-pal/oh-my-agent/commit/316e372db30548728f493bb1c7322ec736c96591))
+* **cli:** list skill promotions, rollback, --trials, and --routing ([01b0e91](https://github.com/verysys-pal/oh-my-agent/commit/01b0e91a3445a7517551d574204238eb4663303a))
+* **cli:** regenerate the registry and note hidden internal commands ([2869c83](https://github.com/verysys-pal/oh-my-agent/commit/2869c83a42d3de4f0ca388046e6cfa8141bc6f81))
+* **cli:** replace removed -m/--model spawn flag with --vendor ([#804](https://github.com/verysys-pal/oh-my-agent/issues/804)) ([90e426d](https://github.com/verysys-pal/oh-my-agent/commit/90e426d85460a473ce04c24c5d5ba2d2f61318a9))
+* **cli:** stop the /setup paragraph rendering as a heading ([2076a2d](https://github.com/verysys-pal/oh-my-agent/commit/2076a2d46fc1660f79be9baac6dd46c5a9c2ad2c))
+* drop stale token figures and fix agent spawn flags ([3cf73e8](https://github.com/verysys-pal/oh-my-agent/commit/3cf73e8b8b709246c7021d31126415ab8f083c9f))
+* **i18n:** add harness incident guides for all locales ([e41fd5e](https://github.com/verysys-pal/oh-my-agent/commit/e41fd5e749c2ea205d08a0b883627ef67afd2f58))
+* **i18n:** add ja and zh harness-evolution guides and harden source link ([99ef73b](https://github.com/verysys-pal/oh-my-agent/commit/99ef73bcafcb465cde403e072c4464fd7de45bae))
+* **i18n:** add Korean harness-evolution guide and sidebar entry ([f8de2a9](https://github.com/verysys-pal/oh-my-agent/commit/f8de2a93684c7f79448a005e0fc6d97619fb59cc))
+* **i18n:** render CJK bold labels and fix copied table rows ([8c2f1ca](https://github.com/verysys-pal/oh-my-agent/commit/8c2f1ca64ea2f0f907e37f380244adca8c47d468))
+* **i18n:** retranslate the ru, vi, and zh CLI references ([2097d8d](https://github.com/verysys-pal/oh-my-agent/commit/2097d8dadd532889cc5ddd90e8c9d9fd0a67ab91))
+* **i18n:** sync 11 locales with the improved web docs ([1a08546](https://github.com/verysys-pal/oh-my-agent/commit/1a0854625389c43787e5c8794ce5f2c296f96d15))
+* **i18n:** sync translations with the English docs ([92dd632](https://github.com/verysys-pal/oh-my-agent/commit/92dd632aa668559f8f3d86bce9ecfb2f2fbb43c1))
+* lead install CTA with npx skills add ([#801](https://github.com/verysys-pal/oh-my-agent/issues/801)) ([51cbf62](https://github.com/verysys-pal/oh-my-agent/commit/51cbf62513b6b2eab178fbfa6e3c924f8f3390cf))
+* lead new users through one scoped first task ([b96655e](https://github.com/verysys-pal/oh-my-agent/commit/b96655eaabe5690e2bec7474275cf9b15e5a9a41))
+* **skills:** document meta-optimization concurrency ([09200a9](https://github.com/verysys-pal/oh-my-agent/commit/09200a94efa0fa4450889614339a61ba7267d65e))
+* **skills:** note blocked inner runs and headroom in meta-optimization ([b8b917b](https://github.com/verysys-pal/oh-my-agent/commit/b8b917bd43fe927b2ce7be51b26c9e78bcefe114))
+* sync supported agents, the spec, and the READMEs with the code ([fd4ae27](https://github.com/verysys-pal/oh-my-agent/commit/fd4ae27270163cc3486962ba8748f4148f9be455))
+* **web:** add diagrams, decision tables, and a glossary ([cc4a891](https://github.com/verysys-pal/oh-my-agent/commit/cc4a891ba19af10b98b77686c514ea8b351cd839))
+* **web:** document the global oma install and slash persistence ([fec9970](https://github.com/verysys-pal/oh-my-agent/commit/fec9970786bbfe98ef7b09c9b4d14e648268711e))
+
 ## [11.0.4](https://github.com/first-fluke/oh-my-agent/compare/web-v11.0.3...web-v11.0.4) (2026-10-15)
 
 
